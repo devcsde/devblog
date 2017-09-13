@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+    <div class="col-md-12">
+        <header class="jumbotron myjumbo">
+            <h2>development concept style</h2>
+            <p>++ <span
+                        class="txt-rotate"
+                        data-period="2000"
+                        data-rotate='[ "javascript es6 ++ web development ++ nodejs", "web development", "nodejs", "html 5", "jquery", "scss" ]'></span>
+            </p>
+            <% if (currentUser) { %>
+            <a class="btn btn-dark btn-md pull-right mytbn" href="/blogs/new">++ article</a>
+            <% } %>
+        </header>
+    </div>
+
+    <div id="blogsview" class="col-md-9">
+        <% blogs.forEach((blog) => { %>
+        <div class="col-md-12">
+            <div class="thumbnail myimg">
+                <img src="<%= blog.image %>">
+                <div class="caption">
+                    <h4><%= blog.name %></h4>
+                </div>
+                <div class="caption">
+                    <p><%- blog.description.substring(0,200) %> ...</p>
+                </div>
+                <p class="caption">
+                    <a href="/blogs/<%= blog._id %>" class="btn btn-dark btn-sm">More Info</a>
+                </p>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+
+<div class="row col-md-3 mycontactDiv">
+    <div class="list-group">
+        <p class="list-group-item mycontact"><strong>contact devcs:</strong></p>
+        <p class="list-group-item mycontact2">
+            Christian Scheidler<br>
+            Professor Jann Gasse 4<br>
+            89264 Weissenhorn<br>
+            +49 1578 20888 02<br>
+            chris(at)devcs(dot)de
+        </p>
+    </div>
+</div>
+
+<% include ../partials/footer %>

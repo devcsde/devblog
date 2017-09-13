@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+    <div class="col-md-9">
+        <div class="thumbnail myjumbo">
+            <img class="img-responsive" src="<%= blog.image %>">
+            <div class="caption">
+                <h4 class="pull-right"></h4>
+                <h4><a><%= blog.name %></a></h4>
+                <p><%- blog.description %></p>
+                <div class="row">
+                    <div class="col-md-10">
+                        <em>Submitted by <%= blog.author.username %></em>
+                    </div>
+                    <div class="col-md-2">
+                        <% if (currentUser && (blog.author.id.equals(currentUser._id) || currentUser.admin)) { %>
+                        <form class=" ui form" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Do you want to delete?')">
+                            <a class="btn btn-xs btn-success" href="/blogs/<%=blog._id%>/edit">Edit</a>
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="well myjumbo">
+            <div class="text-right">
+                <a class="btn btn-dark btn-md" href="/blogs/<%= blog._id %>/comments/new">Add new comment</a>
+            </div>
+            <% blog.comments.forEach((comment) => { %>
+            <div class="row">
+                <hr>
+                <div class="col-m-12">
+                    <strong><%= comment.author.username %></strong>
+                    <span class="pull-right"><%= comment.created.toDateString() %></span>
+                    <p><%- comment.text %></p>
+                </div>
+                <% if (currentUser && (comment.author.id.equals(currentUser._id) || currentUser.admin)) { %>
+                <form class=" ui form" action="/blogs/<%=blog._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Do you want to delete?')">
+                    <a class="btn btn-xs btn-success" href="/blogs/<%=blog._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                    <button class="btn btn-xs btn-danger">Delete</button>
+                </form>
+                <% } %>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <div class="row col-md-3 mycontactDiv">
+        <div class="list-group">
+            <p class="list-group-item mycontact"><strong>contact devcs:</strong></p>
+            <p class="list-group-item mycontact2">
+                Christian Scheidler<br>
+                Professor Jann Gasse 4<br>
+                89264 Weissenhorn<br>
+                +49 1578 20888 02<br>
+                chris(at)devcs(dot)de
+            </p>
+        </div>
+    </div>
+
+<% include ../partials/footer %>
+
