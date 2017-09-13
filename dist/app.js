@@ -11,7 +11,6 @@ var express = require("express"),
     session = require("express-session"),
     MongoStore = require("connect-mongo")(session),
     User = require("./models/user"),
-    IP = process.env.IP || "localhost",
     port = process.env.PORT || 3000;
 
 require('dotenv').config();
@@ -60,7 +59,7 @@ app.use(function (req, res, next) {
   //res.send('404: File Not Found');
 });
 
-app.listen(port, IP, function () {
+app.listen(port, function () {
   console.log("Server started at port " + IP + ":" + port);
 });
 //# sourceMappingURL=app.js.map
