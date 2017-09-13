@@ -19,7 +19,7 @@ const blogRoutes = require("./routes/blogs");
 const indexRoutes = require("./routes/index");
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DB_DEV_URI, {useMongoClient: true});
+mongoose.connect(process.env.DB_URI, {useMongoClient: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
