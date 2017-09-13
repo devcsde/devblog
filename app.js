@@ -58,5 +58,5 @@ app.use(function (req, res, next) {
 });
 
 app.listen(port, () => {
-  console.log(`Server started at port ${IP}:${port}`)
+  console.log(`Server started at port ${port}`)
 });
